@@ -1,5 +1,6 @@
 package com.mrcaracal.havadurumumrc.view
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -55,6 +56,12 @@ class MainActivity : AppCompatActivity() {
             getLiveData()
             Log.i(TAG, "onCreate: " + cityName)
         }
+        btnHeatMap.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            intent.putExtra("lat", viewmodel.weather_data.value?.coord?.lat)
+            intent.putExtra("lon", viewmodel.weather_data.value?.coord?.lon)
+            startActivity(intent)
+        }
 
     }
 
@@ -106,4 +113,5 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
 }
