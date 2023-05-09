@@ -1,5 +1,6 @@
 package com.mrcaracal.havadurumumrc.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        var cName = GET.getString("cityName", "bingöl")?.toLowerCase()
+        val cName = GET.getString("cityName", "bingöl")?.toLowerCase()
         edt_city_name.setText(cName)
         viewmodel.refreshData(cName!!)
 
@@ -58,32 +59,33 @@ class MainActivity : AppCompatActivity() {
         }
         btnHeatMap.setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
-            intent.putExtra("lat", viewmodel.weather_data.value?.coord?.lat)
-            intent.putExtra("lon", viewmodel.weather_data.value?.coord?.lon)
+            intent.putExtra("lat", viewmodel.weather_data.value?.location?.lat)
+            intent.putExtra("lon", viewmodel.weather_data.value?.location?.lon)
             startActivity(intent)
         }
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getLiveData() {
 
         viewmodel.weather_data.observe(this, Observer { data ->
             data?.let {
                 ll_data.visibility = View.VISIBLE
 
-                tv_city_code.text = data.sys.country.toString()
-                tv_city_name.text = data.name.toString()
+                tv_city_code.text = data.location.country
+                tv_city_name.text = data.location.name
 
                 Glide.with(this)
-                    .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
+                    .load("https:" + data.current.condition.icon)
                     .into(img_weather_pictures)
 
-                tv_degree.text = data.main.temp.toString() + "°C"
+                tv_degree.text = data.current.tempC.toString() + "°C"
 
-                tv_humidity.text = data.main.humidity.toString() + "%"
-                tv_wind_speed.text = data.wind.speed.toString()
-                tv_lat.text = data.coord.lat.toString()
-                tv_lon.text = data.coord.lon.toString()
+                tv_humidity.text = data.current.humidity.toString() + "%"
+                tv_wind_speed.text = data.current.windKph.toString()
+                tv_lat.text = data.location.lat.toString()
+                tv_lon.text = data.location.lon.toString()
 
             }
         })

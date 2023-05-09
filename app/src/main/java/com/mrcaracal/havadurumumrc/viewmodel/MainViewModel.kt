@@ -3,6 +3,7 @@ package com.mrcaracal.havadurumumrc.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mrcaracal.havadurumumrc.model.WeatherApiModel
 import com.mrcaracal.havadurumumrc.model.WeatherModel
 import com.mrcaracal.havadurumumrc.service.WeatherAPIService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +18,7 @@ class MainViewModel : ViewModel() {
     private val weatherApiService = WeatherAPIService()
     private val disposable = CompositeDisposable()
 
-    val weather_data = MutableLiveData<WeatherModel>()
+    val weather_data = MutableLiveData<WeatherApiModel>()
     val weather_error = MutableLiveData<Boolean>()
     val weather_loading = MutableLiveData<Boolean>()
 
@@ -32,9 +33,9 @@ class MainViewModel : ViewModel() {
             weatherApiService.getDataService(cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<WeatherModel>() {
+                .subscribeWith(object : DisposableSingleObserver<WeatherApiModel>() {
 
-                    override fun onSuccess(t: WeatherModel) {
+                    override fun onSuccess(t: WeatherApiModel) {
                         weather_data.value = t
                         weather_error.value = false
                         weather_loading.value = false
