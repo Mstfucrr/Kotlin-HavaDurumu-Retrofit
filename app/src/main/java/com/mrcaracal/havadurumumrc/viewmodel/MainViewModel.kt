@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.mrcaracal.havadurumumrc.model.WeatherApiModel
 import com.mrcaracal.havadurumumrc.model.WeatherModel
 import com.mrcaracal.havadurumumrc.service.WeatherAPIService
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -24,6 +25,11 @@ class MainViewModel : ViewModel() {
 
     fun refreshData(cityName: String) {
         getDataFromAPI(cityName)
+    }
+    fun refreshDataList(CityNameList: List<String>) {
+        CityNameList.forEach(){
+            getDataFromAPI(it)
+        }
     }
 
     private fun getDataFromAPI(cityName: String) {

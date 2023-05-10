@@ -10,22 +10,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
-import com.mrcaracal.havadurumumrc.R
+import com.mrcaracal.havadurumumrc.R.*
 import com.mrcaracal.havadurumumrc.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.HashSet
+
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var viewmodel: MainViewModel
 
     private lateinit var GET: SharedPreferences
     private lateinit var SET: SharedPreferences.Editor
 
+    @SuppressLint("MutatingSharedPrefs")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.activity_main)
 
         GET = getSharedPreferences(packageName, MODE_PRIVATE)
         SET = GET.edit()
@@ -43,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             tv_error.visibility = View.GONE
             pb_loading.visibility = View.GONE
 
-            var cityName = GET.getString("cityName", cName)?.toLowerCase()
+            val cityName = GET.getString("cityName", cName)?.toLowerCase()
             edt_city_name.setText(cityName)
             viewmodel.refreshData(cityName!!)
             swipe_refresh_layout.isRefreshing = false
@@ -56,14 +61,51 @@ class MainActivity : AppCompatActivity() {
             viewmodel.refreshData(cityName)
             getLiveData()
             Log.i(TAG, "onCreate: " + cityName)
+            // SharedPreferences nesnesini oluşturun
+            sharedPreferences = getSharedPreferences("Favorites", MODE_PRIVATE)
+            // Favori ekleme/dişe ekleme butonunu ayarlayın
+            if (isFavorite(cityName)) {
+                FavoriteButton.setImageResource(drawable.ic_star_filled)
+            } else {
+                FavoriteButton.setImageResource(drawable.ic_star_empty)
+            }
         }
-        btnHeatMap.setOnClickListener {
+        btnMap.setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
             intent.putExtra("lat", viewmodel.weather_data.value?.location?.lat)
             intent.putExtra("lon", viewmodel.weather_data.value?.location?.lon)
             startActivity(intent)
         }
 
+        btnFavorites.setOnClickListener {
+            val intent = Intent(this, FavoritesActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        FavoriteButton.setOnClickListener(View.OnClickListener {
+            val cityName = edt_city_name.text.toString()
+            val favoriteCities: MutableSet<String> =
+                sharedPreferences.getStringSet("favoriteCities", HashSet<String>()) as MutableSet<String>
+            if (isFavorite(cityName)) {
+                favoriteCities.remove(cityName)
+                FavoriteButton.setImageResource(drawable.ic_star_empty)
+            } else {
+                favoriteCities.add(cityName)
+                FavoriteButton.setImageResource(drawable.ic_star_filled)
+            }
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putStringSet("favoriteCities", favoriteCities)
+            editor.apply()
+        })
+
+    }
+
+    private fun isFavorite(cityName: String): Boolean {
+        sharedPreferences = getSharedPreferences("Favorites", MODE_PRIVATE)
+        val favoriteCities: Set<String> =
+            sharedPreferences.getStringSet("favoriteCities", HashSet<String>()) as Set<String>
+        return favoriteCities.contains(cityName)
     }
 
     @SuppressLint("SetTextI18n")
