@@ -26,7 +26,7 @@ class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.favorites_activity)
-        sharedPreferences = getSharedPreferences("Favorites", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(packageName, MODE_PRIVATE)
         val favoriteCities = sharedPreferences.getStringSet("favoriteCities", HashSet<String>())!!
         favoriteCitiesList = favoriteCities.toList()
         loadFavoriteCitiesWeatherData()

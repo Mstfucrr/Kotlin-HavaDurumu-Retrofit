@@ -21,7 +21,6 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var viewmodel: MainViewModel
 
     private lateinit var GET: SharedPreferences
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
-
         GET = getSharedPreferences(packageName, MODE_PRIVATE)
         SET = GET.edit()
 
@@ -60,11 +58,11 @@ class MainActivity : AppCompatActivity() {
             SET.apply()
             viewmodel.refreshData(cityName)
             getLiveData()
-            Log.i(TAG, "onCreate: " + cityName)
+            Log.i(TAG, "onCreate: $cityName")
             // SharedPreferences nesnesini oluşturun
-            sharedPreferences = getSharedPreferences("Favorites", MODE_PRIVATE)
+
             // Favori ekleme/dişe ekleme butonunu ayarlayın
-            if (isFavorite(cityName)) {
+            if (isFavorite(cityName.toLowerCase())) {
                 FavoriteButton.setImageResource(drawable.ic_star_filled)
             } else {
                 FavoriteButton.setImageResource(drawable.ic_star_empty)
@@ -83,10 +81,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        FavoriteButton.setOnClickListener(View.OnClickListener {
-            val cityName = edt_city_name.text.toString()
+        FavoriteButton.setOnClickListener {
+            val cityName = edt_city_name.text.toString().lowercase(Locale.getDefault())
             val favoriteCities: MutableSet<String> =
-                sharedPreferences.getStringSet("favoriteCities", HashSet<String>()) as MutableSet<String>
+                GET.getStringSet("favoriteCities", HashSet<String>()) as MutableSet<String>
             if (isFavorite(cityName)) {
                 favoriteCities.remove(cityName)
                 FavoriteButton.setImageResource(drawable.ic_star_empty)
@@ -94,18 +92,19 @@ class MainActivity : AppCompatActivity() {
                 favoriteCities.add(cityName)
                 FavoriteButton.setImageResource(drawable.ic_star_filled)
             }
-            val editor: SharedPreferences.Editor = sharedPreferences.edit()
-            editor.putStringSet("favoriteCities", favoriteCities)
-            editor.apply()
-        })
+            //val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            //favoriteCities kümelerini kaydedin
+            SET.putStringSet("favoriteCities", favoriteCities).apply()
+            SET.putString("cityName", cityName.toUpperCase()).apply()
+            SET.putString("cityName", cityName).apply()
+        }
 
     }
 
     private fun isFavorite(cityName: String): Boolean {
-        sharedPreferences = getSharedPreferences("Favorites", MODE_PRIVATE)
         val favoriteCities: Set<String> =
-            sharedPreferences.getStringSet("favoriteCities", HashSet<String>()) as Set<String>
-        return favoriteCities.contains(cityName)
+            GET.getStringSet("favoriteCities", HashSet<String>()) as Set<String>
+        return !(favoriteCities.isEmpty() || !favoriteCities.contains(cityName))
     }
 
     @SuppressLint("SetTextI18n")
