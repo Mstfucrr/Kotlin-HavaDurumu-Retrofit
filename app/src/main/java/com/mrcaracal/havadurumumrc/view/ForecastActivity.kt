@@ -1,6 +1,7 @@
 package com.mrcaracal.havadurumumrc.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,11 +37,11 @@ class ForecastActivity : AppCompatActivity() {
                 data = it
                 GetDate(0, it)
             }})
-
+        var position: Int? = null
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             @SuppressLint("SetTextI18n")
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val position = tab?.position
+                position = tab?.position!!
                 GetDate(position!!, data)
             }
 
@@ -55,14 +56,21 @@ class ForecastActivity : AppCompatActivity() {
 
         })
 
+        btnForecast_Hourly.setOnClickListener {
+            val intent = Intent(this, HourlyActivity::class.java)
+            intent.putExtra("cityName", cityName)
+            intent.putExtra("position", position)
+            startActivity(intent)
+        }
+
 
 
     }
     @SuppressLint("SetTextI18n")
     fun GetDate(position: Int, data: WeatherApiModel?) {
         val forecastday: Forecastday? = data?.forecast?.forecastday?.get(position)
-        Glide.with(this@ForecastActivity)
-            .load("https:" + data?.current?.condition?.icon)
+        Glide.with(this)
+            .load("https:" + data?.forecast?.forecastday?.get(position)?.day?.condition?.icon)
             .into(forecast_img_icon)
         forecast_city_info.text = data?.location?.name + " / " + data?.location?.country
         forecast_uv.text = forecastday?.day?.uv.toString()
@@ -77,4 +85,6 @@ class ForecastActivity : AppCompatActivity() {
         forecast_cond_text.text = forecastday?.day?.condition?.text
         forecast_date.text = forecastday?.date
     }
+
+
 }
