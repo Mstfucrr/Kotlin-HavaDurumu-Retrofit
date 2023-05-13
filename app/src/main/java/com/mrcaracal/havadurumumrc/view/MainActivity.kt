@@ -103,7 +103,8 @@ class MainActivity : AppCompatActivity() {
 
         btnForecast.setOnClickListener {
             val intent = Intent(this, ForecastActivity::class.java)
-            intent.putExtra("cityName", cName.toString())
+            val cityName = edt_city_name.text.toString().lowercase(Locale.getDefault())
+            intent.putExtra("cityName", cityName)
             startActivity(intent)
 
         }
