@@ -52,7 +52,7 @@ class FavoritesActivity : AppCompatActivity() {
             hm["f_condition_text"] = weatherData.current.condition.text
             list += hm
             adapter = SimpleAdapter(this, list, R.layout.favorite_city_item, fromMapKey, toLayoutId)
-            adapter?.setViewBinder { view, data, textRepresentation ->
+            adapter?.setViewBinder { view, data, _ ->
                 when (view.id) {
                     R.id.img_icon -> {
                         val iconUrl = data as String
