@@ -8,9 +8,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.mrcaracal.havadurumumrc.R.*
+import com.mrcaracal.havadurumumrc.model.Forecastday
 import com.mrcaracal.havadurumumrc.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -97,6 +99,13 @@ class MainActivity : AppCompatActivity() {
             SET.putStringSet("favoriteCities", favoriteCities).apply()
             SET.putString("cityName", cityName.toUpperCase()).apply()
             SET.putString("cityName", cityName).apply()
+        }
+
+        btnForecast.setOnClickListener {
+            val intent = Intent(this, ForecastActivity::class.java)
+            intent.putExtra("cityName", cName.toString())
+            startActivity(intent)
+
         }
 
     }
