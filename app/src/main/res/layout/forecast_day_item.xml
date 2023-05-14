@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="344dp"
-            android:layout_height="456dp"
+            android:layout_height="483dp"
             android:background="?attr/colorPrimary"
             android:orientation="vertical"
             android:padding="20sp">
