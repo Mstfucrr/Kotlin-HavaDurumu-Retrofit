@@ -94,14 +94,90 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_degree"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="381dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="#CBCBCB"
-                    android:textSize="65sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_degree"
+                        android:layout_width="246dp"
+                        android:layout_height="307dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="30°C"
+                        android:textColor="#CBCBCB"
+                        android:textSize="65sp" />
+
+                    <ImageView
+                        android:id="@+id/img_weather_pictures"
+                        android:layout_width="129dp"
+                        android:layout_height="306dp"
+                        android:src="@drawable/ic_baseline_cloud_queue_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="178dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="176dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/round_btn"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="En Yüksek"
+                            android:textAlignment="center"
+                            android:textColor="#E2E2E2"
+                            android:textSize="27sp" />
+
+                        <TextView
+                            android:id="@+id/tv_text_max_temp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="35°C"
+                            android:textAlignment="center"
+                            android:textColor="#E2E2E2"
+                            android:textSize="30sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="172dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/round_btn"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="En Düşük"
+                            android:textAlignment="center"
+                            android:textColor="#E2E2E2"
+                            android:textSize="27sp" />
+
+                        <TextView
+                            android:id="@+id/tv_text_min_temp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="35°C"
+                            android:textAlignment="center"
+                            android:textColor="#E2E2E2"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,12 +209,6 @@
                             android:textSize="17sp" />
 
                     </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/img_weather_pictures"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_cloud_queue_24" />
 
                 </LinearLayout>
 
@@ -225,13 +295,15 @@
 
                             <Button
                                 android:id="@+id/btnMap"
-                                android:layout_width="300dp"
+                                android:layout_width="360dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
+                                android:background="@drawable/round_btn"
                                 android:maxWidth="10dp"
+                                android:padding="2sp"
                                 android:onClick="HeatMap"
                                 android:text="Harita"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 app:icon="@drawable/baseline_location_on_24"
                                 app:iconGravity="textTop"
                                 app:iconSize="35dp"
@@ -241,8 +313,14 @@
                                 android:id="@+id/btnFavorites"
                                 android:layout_width="235dp"
                                 android:layout_height="match_parent"
+                                android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:text="Favoriler" />
+                                android:background="@drawable/round_btn"
+
+                                android:padding="2sp"
+                                android:text="Favoriler"
+                                android:textColor="#DBD5D5"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -256,6 +334,7 @@
                             android:id="@+id/btnForecast"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:text="3 Günlük Hava Durumu"
                             android:textAlignment="center"

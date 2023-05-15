@@ -32,6 +32,7 @@ class HourlyActivity : AppCompatActivity() {
         var list: List<HashMap<String, String>> = ArrayList()
         viewmodel.weather_data.observe(this, Observer {
             data = it
+            h_text_date.text = it?.forecast?.forecastday?.get(position)?.date.toString().substring(0, 10)
             it?.forecast?.forecastday?.get(position)?.hour?.forEach() { h ->
                 val hm = HashMap<String, String>()
                 hm["h_time_text"] = h.time.substring(11, 16)

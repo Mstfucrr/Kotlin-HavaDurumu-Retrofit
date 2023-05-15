@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textview3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal|center_vertical"
@@ -32,6 +32,23 @@
                 android:textAlignment="gravity"
                 android:textColor="#DDDDDD"
                 android:textSize="40sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#48FFFFFF"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/h_text_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="2023-12-12"
+                android:textAlignment="gravity"
+                android:textColor="#DDDDDD"
+                android:textSize="30sp" />
         </LinearLayout>
 
         <ListView

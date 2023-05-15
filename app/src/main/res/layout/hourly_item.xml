@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/h_temp_text"
-            android:layout_width="29dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
@@ -35,7 +35,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#C4C4C4"
-            android:textSize="38sp" />
+            android:textSize="33sp" />
 
         <ImageView
             android:id="@+id/h_image_icon"

@@ -132,11 +132,13 @@ class MainActivity : AppCompatActivity() {
                     .into(img_weather_pictures)
 
                 tv_degree.text = data.current.tempC.toString() + "°C"
-
+                tv_text_max_temp.text = data.forecast.forecastday[0].day.maxtempC.toString() + "°C"
+                tv_text_min_temp.text = data.forecast.forecastday[0].day.mintempC.toString() + "°C"
                 tv_humidity.text = data.current.humidity.toString() + "%"
                 tv_wind_speed.text = data.current.windKph.toString()
                 tv_lat.text = data.location.lat.toString()
                 tv_lon.text = data.location.lon.toString()
+
 
             }
         })
