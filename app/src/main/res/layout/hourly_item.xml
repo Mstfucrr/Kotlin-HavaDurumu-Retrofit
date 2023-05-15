@@ -23,7 +23,7 @@
             android:text="15:30"
             android:textAlignment="center"
             android:textColor="#B8B8B8"
-            android:textSize="40sp" />
+            android:textSize="33sp" />
 
         <TextView
             android:id="@+id/h_temp_text"
@@ -35,7 +35,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#C4C4C4"
-            android:textSize="40sp" />
+            android:textSize="38sp" />
 
         <ImageView
             android:id="@+id/h_image_icon"
