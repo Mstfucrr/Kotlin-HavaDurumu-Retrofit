@@ -6,7 +6,7 @@
     android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_screen"
+    android:background="@drawable/pem_slmjt_w"
     tools:context=".view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,14 +41,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#4DFFFFFF"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="279dp"
@@ -107,7 +109,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="30°C"
-                        android:textColor="#CBCBCB"
+                        android:textAlignment="center"
+                        android:textColor="#CE505050"
                         android:textSize="65sp" />
 
                     <ImageView
@@ -119,7 +122,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="178dp"
+                    android:layout_height="199dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
@@ -187,7 +190,7 @@
                     android:padding="15dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="273dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
@@ -204,11 +207,29 @@
                             android:id="@+id/tv_city_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_weight="1"
                             android:text="CITY NAME"
                             android:textSize="17sp" />
 
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnMap"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="278dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:background="@drawable/round_btn"
+                        android:maxWidth="10dp"
+                        android:onClick="HeatMap"
+                        android:padding="2sp"
+                        android:text="Harita"
+                        android:textSize="17sp"
+                        app:icon="@drawable/baseline_location_on_24"
+                        app:iconGravity="textTop"
+                        app:iconSize="35dp"
+                        app:iconTint="#0F4299" />
 
                 </LinearLayout>
 
@@ -234,30 +255,30 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Humidity" />
+                                android:text="Nem" />
 
                             <!--Rüzgar Hızı-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Wind Speed" />
+                                android:text="Rüzgar Hızı" />
 
                             <!--Enlem-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Latitude" />
+                                android:text="Enlem" />
 
                             <!--Boylam-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Longitude" />
+                                android:text="Boylam" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="48dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:orientation="vertical">
@@ -289,37 +310,22 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="191dp"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/btnMap"
-                                android:layout_width="360dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:background="@drawable/round_btn"
-                                android:maxWidth="10dp"
-                                android:padding="2sp"
-                                android:onClick="HeatMap"
-                                android:text="Harita"
-                                android:textSize="13sp"
-                                app:icon="@drawable/baseline_location_on_24"
-                                app:iconGravity="textTop"
-                                app:iconSize="35dp"
-                                app:iconTint="#0F4299" />
-
-                            <Button
                                 android:id="@+id/btnFavorites"
-                                android:layout_width="235dp"
+                                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                                android:layout_width="252dp"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/round_btn"
 
+                                android:background="@drawable/round_btn"
                                 android:padding="2sp"
                                 android:text="Favoriler"
-                                android:textColor="#DBD5D5"
+                                android:textColor="#FFFFFF"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -332,12 +338,15 @@
 
                         <Button
                             android:id="@+id/btnForecast"
+                            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
+                            android:background="@drawable/round_btn"
                             android:text="3 Günlük Hava Durumu"
                             android:textAlignment="center"
+                            android:textColor="#E4E4E4"
                             android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>

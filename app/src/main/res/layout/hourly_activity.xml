@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.HourlyActivity"
-    android:background="@drawable/bg_screen">
+    android:background="@drawable/pem_slmjt_w">
 
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Saatlik hava durumu"
                 android:textAlignment="gravity"
-                android:textColor="#DDDDDD"
+                android:textColor="#646464"
                 android:textSize="40sp" />
         </LinearLayout>
 
@@ -47,7 +47,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="2023-12-12"
                 android:textAlignment="gravity"
-                android:textColor="#DDDDDD"
+                android:textColor="#767676"
                 android:textSize="30sp" />
         </LinearLayout>
 

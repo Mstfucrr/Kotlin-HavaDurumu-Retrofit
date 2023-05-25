@@ -1,7 +1,6 @@
 package com.mrcaracal.havadurumumrc.service
 
 import com.mrcaracal.havadurumumrc.model.WeatherApiModel
-import com.mrcaracal.havadurumumrc.model.WeatherModel
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_screen">
+    android:background="@drawable/pem_slmjt_w">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -12,14 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="537dp">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

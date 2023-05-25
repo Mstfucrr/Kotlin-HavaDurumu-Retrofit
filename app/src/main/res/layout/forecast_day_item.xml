@@ -9,12 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="30sp">
+        android:padding="30sp"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="344dp"
             android:layout_height="483dp"
-            android:background="?attr/colorPrimary"
+            android:background="#4500FFC4"
             android:orientation="vertical"
             android:padding="20sp">
 
@@ -311,9 +312,12 @@
 
         <Button
             android:id="@+id/btnForecast_Hourly"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:background="@drawable/round_btn"
             android:text="Saatlik Hava Durumu"
             android:textAlignment="center"
             android:textSize="16sp"

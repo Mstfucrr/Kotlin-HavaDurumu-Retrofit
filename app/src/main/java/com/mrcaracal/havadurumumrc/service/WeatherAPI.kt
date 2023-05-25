@@ -1,7 +1,6 @@
 package com.mrcaracal.havadurumumrc.service
 
 import com.mrcaracal.havadurumumrc.model.*
-import com.mrcaracal.havadurumumrc.model.WeatherModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
